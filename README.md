@@ -1,17 +1,21 @@
-# Automação de Cotação do Dólar com BotCity
+# 📊 Monitoramento de Cotação de Moedas (RPA)
 
-Projeto de RPA desenvolvido em Python utilizando BotCity Web para:
+Projeto de automação em Python desenvolvido para monitorar a cotação de moedas utilizando dados do Banco Central do Brasil.
 
-- Coletar a cotação do dólar
-- Utilizar dados do Banco Central
-- Atualizar planilha Excel automaticamente
-- Monitoramento diário automatizado
+O sistema coleta automaticamente as cotações e registra em uma base histórica no Excel.
 
-Tecnologias:
+## 🚀 Tecnologias Utilizadas
+
 - Python
-- BotCity
-- Selenium
-- Excel Automation
+- Pandas
+- Requests
+- OpenPyXL
+- VS Code
 
-Autor:
-José Oiris Inácio da Costa
+## 💰 Moedas Monitoradas
+
+- Dólar (USD)
+- Euro (EUR)
+- Real (BRL)
+
+## 📂 Estrutura do Projeto
