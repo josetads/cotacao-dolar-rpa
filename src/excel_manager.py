@@ -1,36 +1,36 @@
 import pandas as pd
+from datetime import datetime
 import os
 
-CAMINHO = "src/Database/dados_dolar.xlsx"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-def salvar_dados(data, valor):
-    novo = pd.DataFrame({
+PASTA_DATABASE = os.path.join(BASE_DIR, "Database")
+
+ARQUIVO_EXCEL = os.path.join(PASTA_DATABASE, "dados_dolar.xlsx")
+
+
+def atualizar_excel(dolar, euro, real):
+
+    os.makedirs(PASTA_DATABASE, exist_ok=True)
+
+    data = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    novo_registro = pd.DataFrame({
         "Data": [data],
-        "Valor": [valor]
+        "Dolar": [dolar],
+        "Euro": [euro],
+        "Real": [real]
     })
 
-    # Garante que a pasta existe
-    os.makedirs("src/Database", exist_ok=True)
+    if os.path.exists(ARQUIVO_EXCEL):
 
-    try:
-        # Se o arquivo existir, tenta ler
-        if os.path.exists(CAMINHO):
-            df = pd.read_excel(CAMINHO, engine="openpyxl")
+        df = pd.read_excel(ARQUIVO_EXCEL)
+        df = pd.concat([df, novo_registro], ignore_index=True)
 
-            # Evitar duplicidade
-            if data in df["Data"].values:
-                print("Registro já existe.")
-                return
+    else:
 
-            df = pd.concat([df, novo], ignore_index=True)
-        else:
-            df = novo
+        df = novo_registro
 
-    except Exception as e:
-        print("Arquivo corrompido ou inválido. Criando novo...")
-        df = novo
+    df.to_excel(ARQUIVO_EXCEL, index=False)
 
-    # Salva corretamente como Excel
-    df.to_excel(CAMINHO, index=False, engine="openpyxl")
-
-    print("Dados salvos com sucesso!")
+    print("Excel atualizado com sucesso.")

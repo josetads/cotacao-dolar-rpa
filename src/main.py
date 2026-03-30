@@ -1,16 +1,18 @@
-from coletor_dolar import obter_dolar
-from excel_manager import salvar_dados
+from coletor_moedas import obter_cotacoes
+from excel_manager import atualizar_excel
+
 
 def main():
-    print("=== ROBÔ DE MONITORAMENTO DO DÓLAR ===")
 
-    data, valor = obter_dolar()
+    dolar, euro, real = obter_cotacoes()
 
-    if data and valor:
-        print(f"Cotação do dólar em {data}: R$ {valor}")
-        salvar_dados(data, valor)
-    else:
-        print("Erro na execução do robô.")
+    print("Cotação atual:")
+    print("Dólar:", dolar)
+    print("Euro:", euro)
+    print("Real:", real)
+
+    atualizar_excel(dolar, euro, real)
+
 
 if __name__ == "__main__":
     main()
