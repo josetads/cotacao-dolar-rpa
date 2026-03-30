@@ -5,7 +5,7 @@ def enviar_email(arquivo_excel):
 
     email_remetente = "oirisinacio@gmail.com"
     senha = "joseatnafirlkkfu"
-    email_destino = "oirisdc@gmail.com"
+    email_destino = "vitorbref@ifam.edu.br"
 
     msg = EmailMessage()
 
