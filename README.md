@@ -191,12 +191,3 @@ git add README.md
 git commit -m "README profissional"
 git push
 Resultado
-
-Seu repositório ficará com aparência profissional, mostrando:
-
-projeto de automação
-RPA
-Python
-integração com API
-Excel
-automação corporativa
