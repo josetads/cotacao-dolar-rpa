@@ -1,21 +1,27 @@
-# 📊 Monitoramento de Cotação de Moedas (RPA)
+# RPA Monitoramento de Cotação de Moedas
 
-Projeto de automação em Python desenvolvido para monitorar a cotação de moedas utilizando dados do Banco Central do Brasil.
+Projeto de automação desenvolvido com Python e BotCity para monitorar a cotação de moedas e registrar os valores em um arquivo Excel.
 
-O sistema coleta automaticamente as cotações e registra em uma base histórica no Excel.
-
-## 🚀 Tecnologias Utilizadas
+## Tecnologias
 
 - Python
+- BotCity
 - Pandas
 - Requests
 - OpenPyXL
-- VS Code
 
-## 💰 Moedas Monitoradas
+## Moedas Monitoradas
 
-- Dólar (USD)
-- Euro (EUR)
-- Real (BRL)
+- Dólar
+- Euro
+- Real
 
-## 📂 Estrutura do Projeto
+## Estrutura
+
+src/
+Database/
+requirements.txt
+
+## Execução
+
+python src/main.py
