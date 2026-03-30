@@ -2,35 +2,31 @@ import pandas as pd
 from datetime import datetime
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+def salvar_excel(dolar, euro, real):
 
-PASTA_DATABASE = os.path.join(BASE_DIR, "Database")
+    pasta = "Database"
+    arquivo = os.path.join(pasta, "dados_cotacoes.xlsx")
 
-ARQUIVO_EXCEL = os.path.join(PASTA_DATABASE, "dados_dolar.xlsx")
+    os.makedirs(pasta, exist_ok=True)
 
+    data = datetime.now().strftime("%Y-%m-%d %H:%M")
 
-def atualizar_excel(dolar, euro, real):
-
-    os.makedirs(PASTA_DATABASE, exist_ok=True)
-
-    data = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    novo_registro = pd.DataFrame({
+    nova_linha = pd.DataFrame({
         "Data": [data],
         "Dolar": [dolar],
         "Euro": [euro],
         "Real": [real]
     })
 
-    if os.path.exists(ARQUIVO_EXCEL):
+    if os.path.exists(arquivo):
 
-        df = pd.read_excel(ARQUIVO_EXCEL)
-        df = pd.concat([df, novo_registro], ignore_index=True)
+        df = pd.read_excel(arquivo)
+        df = pd.concat([df, nova_linha], ignore_index=True)
 
     else:
 
-        df = novo_registro
+        df = nova_linha
 
-    df.to_excel(ARQUIVO_EXCEL, index=False)
+    df.to_excel(arquivo, index=False)
 
-    print("Excel atualizado com sucesso.")
+    return arquivo

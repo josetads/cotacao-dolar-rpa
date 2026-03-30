@@ -1,4 +1,7 @@
-requests
+botcity-framework-web
+botcity-maestro-sdk
 pandas
+requests
 openpyxl
-botcity-framework-core
+smtplib
+email

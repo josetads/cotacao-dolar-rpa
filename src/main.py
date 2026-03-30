@@ -1,18 +1,29 @@
-from coletor_moedas import obter_cotacoes
-from excel_manager import atualizar_excel
-
+from botcity.web import WebBot
+from coletor_moedas import coletar_cotacoes
+from excel_manager import salvar_excel
+from email_sender import enviar_email
 
 def main():
 
-    dolar, euro, real = obter_cotacoes()
+    print("Iniciando robô de monitoramento de moedas")
+
+    bot = WebBot()
+    bot.headless = True
+
+    dolar, euro, real = coletar_cotacoes()
 
     print("Cotação atual:")
-    print("Dólar:", dolar)
+    print("Dolar:", dolar)
     print("Euro:", euro)
     print("Real:", real)
 
-    atualizar_excel(dolar, euro, real)
+    arquivo = salvar_excel(dolar, euro, real)
 
+    print("Excel atualizado")
+
+    enviar_email(arquivo)
+
+    print("Processo finalizado")
 
 if __name__ == "__main__":
     main()

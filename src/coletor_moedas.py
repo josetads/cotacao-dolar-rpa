@@ -1,17 +1,17 @@
 import requests
 
+def coletar_cotacoes():
 
-def obter_cotacoes():
+    url = "https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL"
 
-    url_dolar = "https://api.bcb.gov.br/dados/serie/bcdata.sgs.1/dados/ultimos/1?formato=json"
-    url_euro = "https://api.bcb.gov.br/dados/serie/bcdata.sgs.21619/dados/ultimos/1?formato=json"
+    resposta = requests.get(url)
 
-    resposta_dolar = requests.get(url_dolar)
-    resposta_euro = requests.get(url_euro)
+    dados = resposta.json()
 
-    dolar = float(resposta_dolar.json()[0]["valor"])
-    euro = float(resposta_euro.json()[0]["valor"])
+    dolar = float(dados['USDBRL']['bid'])
+    euro = float(dados['EURBRL']['bid'])
 
+    # valor base do real
     real = 1.0
 
     return dolar, euro, real
